@@ -1,0 +1,26 @@
+<nav class="navbar" [class.scrolled]="isScrolled()" [class.menu-open]="menuOpen()">
+  <div class="nav-container">
+    <a class="nav-logo" href="#hero" (click)="closeMenu()">
+      <span class="logo-bracket">&lt;</span>VG<span class="logo-bracket">/&gt;</span>
+    </a>
+
+    <ul class="nav-links" [class.active]="menuOpen()">
+      @for (item of navItems; track item.label) {
+        <li>
+          <a [href]="item.href" class="nav-link" (click)="closeMenu()">
+            <span class="nav-num">{{ item.num }}</span>{{ item.label }}
+          </a>
+        </li>
+      }
+      <li>
+        <a href="mailto:vishalgupta.vg1408@gmail.com" class="btn btn-outline nav-cta" (click)="closeMenu()">
+          <i class="fas fa-envelope"></i> Hire Me
+        </a>
+      </li>
+    </ul>
+
+    <button class="hamburger" (click)="toggleMenu()" [class.active]="menuOpen()" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>

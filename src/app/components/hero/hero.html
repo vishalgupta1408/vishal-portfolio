@@ -1,0 +1,87 @@
+<section id="hero" class="hero">
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-content container">
+    <div class="hero-text">
+      <p class="hero-greeting animate-1">
+        <span class="mono-tag">&lt;</span> Hello World <span class="mono-tag">/&gt;</span>
+      </p>
+      <h1 class="hero-name animate-2">Vishal<br><span class="gradient-text">Gupta</span></h1>
+      <h2 class="hero-role animate-3">
+        <span class="role-prefix">I build&nbsp;</span>
+        <span class="typewriter-wrapper">
+          <span class="typewriter">{{ displayText() }}</span>
+          <span class="cursor" [class.blink]="!isTyping()">|</span>
+        </span>
+      </h2>
+      <p class="hero-desc animate-4">
+        Backend-focused Software Developer with <strong>2+ years</strong> of experience designing scalable
+        backend services, REST APIs, and payment gateway integrations. Currently at
+        <span class="company-tag">ANR Software Pvt. Ltd.</span>
+      </p>
+
+      <div class="hero-stats animate-5">
+        <div class="stat"><span class="stat-num">2+</span><span class="stat-label">Years Exp.</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">5K+</span><span class="stat-label">Daily Tx.</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">35%</span><span class="stat-label">DB Boost</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><span class="stat-num">40%</span><span class="stat-label">Deploy Speed</span></div>
+      </div>
+
+      <div class="hero-actions animate-6">
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+      </div>
+
+      <div class="hero-socials animate-7">
+        <a href="https://github.com/vishalgupta1408" target="_blank" rel="noopener" class="social-link"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/vishal-gupta-b0817120a" target="_blank" rel="noopener" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:vishalgupta.vg1408@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+        <div class="social-line"></div>
+      </div>
+    </div>
+
+    <div class="hero-visual animate-4">
+      <div class="code-window">
+        <div class="window-header">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="window-title">Developer.java</span>
+        </div>
+        <pre class="code-body"><code><span class="kw">public class</span> <span class="cls">Developer</span> &#123;
+
+  <span class="kw">private</span> String name = <span class="str">"Vishal Gupta"</span>;
+  <span class="kw">private</span> String role = <span class="str">"Backend Developer"</span>;
+  <span class="kw">private</span> String company = <span class="str">"ANR Software"</span>;
+  <span class="kw">private int</span> experience = <span class="num">2+</span>;
+
+  <span class="kw">private</span> List&lt;String&gt; skills = Arrays.asList(
+    <span class="str">"Java"</span>, <span class="str">"Spring Boot"</span>,
+    <span class="str">"REST APIs"</span>, <span class="str">"MySQL"</span>,
+    <span class="str">"PostgreSQL"</span>, <span class="str">"AWS S3"</span>
+  );
+
+  <span class="kw">public</span> String getPassion() &#123;
+    <span class="kw">return</span> <span class="str">"Building scalable systems"</span>;
+  &#125;
+
+  <span class="cmt">// Always learning... 🚀</span>
+&#125;</code></pre>
+      </div>
+      <div class="tech-badges">
+        @for (tech of techBadges; track tech) {
+          <span class="tech-badge">{{ tech }}</span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-indicator">
+    <span>Scroll Down</span>
+    <div class="scroll-arrow"><i class="fas fa-chevron-down"></i></div>
+  </a>
+</section>

@@ -1,0 +1,62 @@
+<section id="about" class="section about-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">// who am i</span>
+      <h2>About <span>Me</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-avatar-col">
+        <div class="avatar-wrapper">
+          <div class="avatar-ring"></div>
+          <div class="avatar-bg">
+            <div class="avatar-initials">VG</div>
+            <div class="avatar-code"><span>&#123; &#125;</span></div>
+          </div>
+          <div class="award-badge"><i class="fas fa-trophy"></i><span>EOM · Apr 2025</span></div>
+        </div>
+        <div class="quick-info">
+          @for (info of quickInfo; track info.text) {
+            <div class="qi-item">
+              <i [class]="info.icon"></i><span>{{ info.text }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="about-content">
+        <p class="about-lead">
+          I'm a <strong>Backend Software Developer</strong> based in Saharanpur, UP — passionate about
+          building robust, high-performance systems that power real-world applications at scale.
+        </p>
+        <p class="about-body">
+          With <strong>2+ years</strong> of hands-on experience at ANR Software Pvt. Ltd., I've engineered
+          backend services for the <em>Plum Ordering Platform</em>, handling <strong>5,000+ daily transactions</strong>
+          and integrating payment gateways like Stripe and PlumPay for <strong>10,000+ monthly digital transactions</strong>.
+        </p>
+        <p class="about-body">
+          I thrive in cross-functional Agile teams and was recognised as <em>Employee of the Month (April 2025)</em>
+          for exceptional delivery and ownership of critical backend modules.
+        </p>
+
+        <div class="about-highlights">
+          @for (h of highlights; track h.title) {
+            <div class="highlight-item">
+              <div class="highlight-icon"><i [class]="h.icon"></i></div>
+              <div>
+                <h4>{{ h.title }}</h4>
+                <p>{{ h.desc }}</p>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="about-actions">
+          <a href="mailto:vishalgupta.vg1408@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> Let's Connect</a>
+          <a href="https://www.linkedin.com/in/vishal-gupta-b0817120a" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+          <a href="https://github.com/vishalgupta1408" target="_blank" rel="noopener" class="btn btn-outline"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

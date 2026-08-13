@@ -1,0 +1,47 @@
+.experience-section { background: var(--bg-secondary); }
+
+.timeline { max-width: 860px; margin: 0 auto; position: relative; }
+
+.timeline-item { display: flex; gap: 28px; position: relative; }
+
+.timeline-dot {
+  display: flex; flex-direction: column; align-items: center; flex-shrink: 0; cursor: pointer; padding-top: 28px;
+  .dot-inner { width:16px;height:16px;border-radius:50%;background:var(--bg-card);border:2px solid var(--text-muted);transition:var(--transition);position:relative;z-index:2; }
+}
+
+.timeline-item.active .dot-inner { border-color:var(--accent-primary);background:var(--accent-primary);box-shadow:0 0 0 4px rgba(0,212,255,.2); }
+
+.timeline-line { position:absolute;left:7px;top:44px;bottom:-28px;width:2px;background:var(--border-color); }
+
+.timeline-card {
+  flex:1; background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-lg); padding:28px; margin-bottom:28px; cursor:pointer; transition:var(--transition);
+  &:hover { border-color:var(--border-glow);box-shadow:var(--shadow-glow);transform:translateX(4px); }
+}
+
+.timeline-item.active .timeline-card { border-color:rgba(0,212,255,.25); }
+
+.card-top { display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px;flex-wrap:wrap; }
+
+.job-period { font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--accent-primary);letter-spacing:.05em;display:block;margin-bottom:6px; }
+.job-title { font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:8px; }
+
+.job-company {
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  i{color:var(--accent-primary);font-size:.85rem} span{font-size:.9rem;color:var(--text-secondary)}
+  .job-location { display:flex;align-items:center;gap:4px;color:var(--text-muted);font-size:.82rem;font-family:'JetBrains Mono',monospace; }
+}
+
+.job-badge { padding:4px 14px;border-radius:50px;font-size:.75rem;font-weight:600;background:rgba(0,255,136,.1);color:var(--accent-green);border:1px solid rgba(0,255,136,.25);white-space:nowrap; }
+
+.job-points {
+  display:flex;flex-direction:column;gap:10px;margin-bottom:20px;
+  li { display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--text-secondary);line-height:1.6; &:hover{color:var(--text-primary)} }
+  .point-arrow { color:var(--accent-primary);font-size:.7rem;margin-top:4px;flex-shrink:0; }
+}
+
+.job-tags { display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid var(--border-color);padding-top:16px; .badge{font-size:.72rem} }
+
+@media (max-width: 600px) {
+  .timeline-item { gap: 16px; }
+  .card-top { flex-direction: column; }
+}

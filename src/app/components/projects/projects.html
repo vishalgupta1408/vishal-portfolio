@@ -1,0 +1,51 @@
+<section id="projects" class="section projects-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">// things i've built</span>
+      <h2>Featured <span>Projects</span></h2>
+      <p>A mix of professional work and personal side projects</p>
+    </div>
+
+    <div class="project-filters">
+      <button class="filter-btn" [class.active]="activeFilter()==='all'" (click)="setFilter('all')">All</button>
+      <button class="filter-btn" [class.active]="activeFilter()==='professional'" (click)="setFilter('professional')">Professional</button>
+      <button class="filter-btn" [class.active]="activeFilter()==='personal'" (click)="setFilter('personal')">Personal</button>
+    </div>
+
+    <div class="projects-grid">
+      @for (project of filteredProjects(); track project.title) {
+        <div class="project-card" [class.featured]="project.featured">
+          <div class="project-top">
+            <div class="project-icon"><i [class]="project.icon"></i></div>
+            <div class="project-links">
+              @if (project.github) {
+                <a [href]="project.github" target="_blank" rel="noopener" class="project-link"><i class="fab fa-github"></i></a>
+              }
+              @if (project.live) {
+                <a [href]="project.live" target="_blank" rel="noopener" class="project-link"><i class="fas fa-external-link-alt"></i></a>
+              }
+            </div>
+          </div>
+
+          <div class="project-type-badge" [class]="project.type">{{ project.typeLabel }}</div>
+          <h3 class="project-title">{{ project.title }}</h3>
+          <p class="project-desc">{{ project.description }}</p>
+
+          <ul class="project-points">
+            @for (point of project.highlights; track point) {
+              <li><i class="fas fa-chevron-right"></i> {{ point }}</li>
+            }
+          </ul>
+
+          <div class="project-footer">
+            <div class="project-tags">
+              @for (tag of project.tags; track tag) {
+                <span class="p-tag">{{ tag }}</span>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

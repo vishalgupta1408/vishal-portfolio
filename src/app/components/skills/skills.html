@@ -1,0 +1,47 @@
+<section id="skills" class="section skills-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">// my toolkit</span>
+      <h2>Technical <span>Skills</span></h2>
+      <p>Technologies and tools I work with to build scalable backend systems</p>
+    </div>
+
+    <div class="skills-categories">
+      @for (cat of skillCategories; track cat.title) {
+        <div class="skill-category">
+          <div class="cat-header">
+            <div class="cat-icon"><i [class]="cat.icon"></i></div>
+            <h3>{{ cat.title }}</h3>
+          </div>
+          <div class="skill-bars">
+            @for (skill of cat.skills; track skill.name) {
+              <div class="skill-bar">
+                <div class="skill-meta">
+                  <span class="skill-name">{{ skill.name }}</span>
+                  <span class="skill-level">{{ skill.level }}%</span>
+                </div>
+                <div class="skill-track">
+                  <div class="skill-fill"
+                       [style.width]="animated() ? skill.level + '%' : '0%'"
+                       [style.background]="skill.color">
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="tools-section">
+      <span class="section-label">// also familiar with</span>
+      <div class="tools-grid">
+        @for (tool of tools; track tool.name) {
+          <div class="tool-chip">
+            <i [class]="tool.icon"></i><span>{{ tool.name }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

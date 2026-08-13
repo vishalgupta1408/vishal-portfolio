@@ -1,0 +1,68 @@
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">// get in touch</span>
+      <h2>Let's <span>Work Together</span></h2>
+      <p>Have a project in mind or want to connect? I'd love to hear from you.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-tagline">
+          <h3>Open to new opportunities</h3>
+          <p>Whether it's a backend role, a freelance project, or just a tech chat — drop me a message.</p>
+        </div>
+
+        <div class="contact-links">
+          @for (link of contactLinks; track link.label) {
+            <a [href]="link.href" [target]="link.external ? '_blank' : '_self'" rel="noopener" class="contact-link-card">
+              <div class="cl-icon"><i [class]="link.icon"></i></div>
+              <div class="cl-info">
+                <span class="cl-label">{{ link.label }}</span>
+                <span class="cl-value">{{ link.value }}</span>
+              </div>
+              <i class="fas fa-arrow-right cl-arrow"></i>
+            </a>
+          }
+        </div>
+
+        <div class="social-row">
+          <a href="https://github.com/vishalgupta1408" target="_blank" rel="noopener" class="social-icon-btn"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/vishal-gupta-b0817120a" target="_blank" rel="noopener" class="social-icon-btn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:vishalgupta.vg1408@gmail.com" class="social-icon-btn"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap">
+        <form class="contact-form" (ngSubmit)="sendMessage()" #contactForm="ngForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input id="name" name="name" type="text" [(ngModel)]="form.name" placeholder="John Doe" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input id="email" name="email" type="email" [(ngModel)]="form.email" placeholder="john@example.com" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input id="subject" name="subject" type="text" [(ngModel)]="form.subject" placeholder="Project Discussion" required class="form-input">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" [(ngModel)]="form.message" placeholder="Tell me about your project..." rows="5" required class="form-input form-textarea"></textarea>
+          </div>
+
+          @if (submitted()) {
+            <div class="form-success">
+              <i class="fas fa-check-circle"></i><span>Message sent! I'll get back to you soon.</span>
+            </div>
+          }
+
+          <button type="submit" class="btn btn-primary form-submit" [disabled]="!contactForm.valid">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
