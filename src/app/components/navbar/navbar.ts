@@ -1,4 +1,5 @@
-import { Component, HostListener, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
+import { PortfolioConfigService } from '../../services/portfolio-config.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,16 +8,13 @@ import { Component, HostListener, signal } from '@angular/core';
   styleUrl: './navbar.scss'
 })
 export class Navbar {
-  isScrolled = signal(false);
-  menuOpen = signal(false);
+  private configService = inject(PortfolioConfigService);
 
-  navItems = [
-    { num: '01.', label: 'About',      href: '#about' },
-    { num: '02.', label: 'Skills',     href: '#skills' },
-    { num: '03.', label: 'Experience', href: '#experience' },
-    { num: '04.', label: 'Projects',   href: '#projects' },
-    { num: '05.', label: 'Contact',    href: '#contact' },
-  ];
+  isScrolled = signal(false);
+  menuOpen  = signal(false);
+
+  get navbar()        { return this.configService.config()?.navbar; }
+  get hireEmailHref() { return 'mailto:' + (this.configService.config()?.contact?.email ?? ''); }
 
   @HostListener('window:scroll')
   onScroll() { this.isScrolled.set(window.scrollY > 60); }

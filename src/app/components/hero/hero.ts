@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, signal } from '@angular/core';
+import { PortfolioConfigService } from '../../services/portfolio-config.service';
 
 @Component({
   selector: 'app-hero',
@@ -7,21 +8,27 @@ import { Component, OnInit, OnDestroy, signal } from '@angular/core';
   styleUrl: './hero.scss'
 })
 export class Hero implements OnInit, OnDestroy {
-  displayText = signal('');
-  isTyping = signal(true);
+  private configService = inject(PortfolioConfigService);
 
-  private roles = ['scalable APIs.', 'microservices.', 'payment systems.', 'backend magic.', 'robust databases.'];
-  private roleIndex = 0;
-  private charIndex = 0;
+  displayText = signal('');
+  isTyping    = signal(true);
+
+  private roleIndex  = 0;
+  private charIndex  = 0;
   private isDeleting = false;
   private timer: ReturnType<typeof setTimeout> | null = null;
 
-  techBadges = ['Java', 'Spring Boot', 'MySQL', 'PostgreSQL', 'AWS S3', 'Jenkins', 'REST APIs', 'Git'];
+  get hero()       { return this.configService.config()?.hero; }
+  get techBadges() { return this.hero?.techBadges ?? []; }
+  private get roles() { return this.hero?.roles ?? []; }
 
   ngOnInit() { this.timer = setTimeout(() => this.typeWriter(), 1000); }
 
   typeWriter() {
-    const current = this.roles[this.roleIndex];
+    const roles = this.roles;
+    if (!roles.length) return;
+
+    const current = roles[this.roleIndex % roles.length];
     if (!this.isDeleting) {
       this.displayText.set(current.substring(0, this.charIndex + 1));
       this.charIndex++;
@@ -37,7 +44,7 @@ export class Hero implements OnInit, OnDestroy {
       this.isTyping.set(true);
       if (this.charIndex === 0) {
         this.isDeleting = false;
-        this.roleIndex = (this.roleIndex + 1) % this.roles.length;
+        this.roleIndex = (this.roleIndex + 1) % roles.length;
       }
     }
     this.timer = setTimeout(() => this.typeWriter(), this.isDeleting ? 60 : 100);

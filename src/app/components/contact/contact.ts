@@ -1,5 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { PortfolioConfigService } from '../../services/portfolio-config.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,26 +9,22 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './contact.scss'
 })
 export class Contact {
+  private configService = inject(PortfolioConfigService);
+
   submitted = signal(false);
+  form = { name: '', email: '', subject: '', message: '' };
 
-  form = { name:'', email:'', subject:'', message:'' };
-
-  contactLinks = [
-    { icon:'fas fa-envelope',    label:'Email',    value:'vishalgupta.vg1408@gmail.com', href:'mailto:vishalgupta.vg1408@gmail.com', external:false },
-    { icon:'fas fa-phone',       label:'Phone',    value:'+91-8958135721',               href:'tel:+918958135721',                    external:false },
-    { icon:'fab fa-linkedin-in', label:'LinkedIn', value:'vishal-gupta-b0817120a',       href:'https://www.linkedin.com/in/vishal-gupta-b0817120a', external:true },
-    { icon:'fab fa-github',      label:'GitHub',   value:'vishalgupta1408',              href:'https://github.com/vishalgupta1408',   external:true },
-    { icon:'fas fa-map-marker-alt', label:'Location', value:'Saharanpur, UP, India',    href:'#',                                    external:false },
-  ];
+  get contactLinks() { return this.configService.config()?.contact?.links ?? []; }
 
   sendMessage() {
     const { name, email, subject, message } = this.form;
-    const mailtoLink = `mailto:vishalgupta.vg1408@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Vishal,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`)}`;
+    const toEmail = this.configService.config()?.contact?.email ?? '';
+    const mailtoLink = `mailto:${toEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`)}`;
     window.open(mailtoLink);
     this.submitted.set(true);
     setTimeout(() => {
       this.submitted.set(false);
-      this.form = { name:'', email:'', subject:'', message:'' };
+      this.form = { name: '', email: '', subject: '', message: '' };
     }, 3000);
   }
 }
